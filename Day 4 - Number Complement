@@ -1,0 +1,17 @@
+class Solution {
+    public int findComplement(int num) {
+        if(num==0)
+            return 1;
+        int count=0;
+        int ans=0;
+        while(num>0)
+        {
+            int mod=num%2;
+            if(mod == 0)
+               ans+=Math.pow(2, count);
+            num=num/2;
+            count++;
+        }
+        return ans;
+    }
+}
