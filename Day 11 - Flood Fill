@@ -1,0 +1,23 @@
+class Solution {
+    public void floodFill(boolean[][] vis, int[][] image, int x, int y, int newColor, int row, int col, int c)
+    {
+        if(x<0 || x>=row || y<0 || y>=col || image[x][y]!=c || vis[x][y]==true)    //Base Condition
+            return;
+        image[x][y]=newColor;                       //Update color
+        vis[x][y]=true;
+        floodFill(vis, image, x+1, y, newColor, row, col, c);
+        floodFill(vis, image, x-1, y, newColor, row, col, c);
+        floodFill(vis, image, x, y+1, newColor, row, col, c);
+        floodFill(vis, image, x, y-1, newColor, row, col, c);
+    }
+    
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        
+        int row = image.length;
+        int col = image[0].length;
+        int c = image[sr][sc];
+        boolean [][]vis = new boolean[row][col];
+        floodFill(vis, image, sr, sc, newColor, row, col, c);
+        return image;
+    }
+}
