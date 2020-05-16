@@ -1,0 +1,35 @@
+class Solution {
+    public int maxArray(int []A)
+    {
+        int n = A.length;
+        int max1 = kadane(A);
+        
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=A[i];
+            A[i] = -A[i];
+        }
+        
+        sum = sum + kadane(A);
+        //System.out.println(sum+" "+max1);
+        if(sum==0)
+            return max1;
+        return Math.max(sum, max1);
+    }
+    public int kadane(int []A)
+    {
+        int n = A.length;
+        int sum=A[0], max=A[0];
+        for(int i=1;i<n;i++)
+        {
+            sum = Math.max(A[i], sum+A[i]);
+            max = Math.max(max, sum);
+        }
+        return max;
+    }
+    public int maxSubarraySumCircular(int[] A) {
+        
+        return maxArray(A);
+    }
+}
