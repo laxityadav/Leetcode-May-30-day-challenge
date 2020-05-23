@@ -1,0 +1,51 @@
+class Solution {
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm) 
+    { 
+        List<Map.Entry<String, Integer> > list = 
+               new LinkedList<Map.Entry<String, Integer> >(hm.entrySet()); 
+  
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() { 
+            public int compare(Map.Entry<String, Integer> o1,  
+                               Map.Entry<String, Integer> o2) 
+            { 
+                return -(o1.getValue()).compareTo(o2.getValue());
+            } 
+        }); 
+
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>(); 
+        for (Map.Entry<String, Integer> aa : list) { 
+            temp.put(aa.getKey(), aa.getValue()); 
+        } 
+        return temp; 
+    } 
+    public String frequencySort(String s) {
+        ArrayList<Pair> list = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        for(int i=0;i<s.length();i++)
+        {
+            char ch = s.charAt(i);
+            if(map.containsKey(ch+""))
+                map.put(ch+"", map.get(ch+"")+1);
+            else
+                map.put(ch+"", 1);
+        }
+        Map<String, Integer> hm1 = sortByValue(map);
+        //System.out.println(hm1);
+
+        String ans="";
+        for (Map.Entry<String, Integer> en : hm1.entrySet()) { 
+            int val=en.getValue();
+            String key=en.getKey();
+            while(val-->0)
+            {
+                ans+=key;
+            }
+        } 
+        return ans;
+    }
+}
+
+
+
+
