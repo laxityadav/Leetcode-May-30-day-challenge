@@ -1,0 +1,34 @@
+class Solution {
+    LinkedList<Integer> []adj;
+    private boolean dfs(boolean []vis, int val, boolean []stk)
+    {
+        vis[val]=true;                  //marking the node visited and putting in recursion stack
+        stk[val]=true;            
+        for(int temp:adj[val]){
+            if(vis[temp] && stk[temp]){     //check for the cycle in a graph
+                return false;
+            }
+            else{
+                if(!dfs(vis, temp, stk))    //call for next adjacent node
+                    return false;
+            }
+        }
+        stk[val]=false;                 
+        return true;
+    }
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        adj = new LinkedList[numCourses];      //adjacency list
+        for(int i=0;i<numCourses;i++)
+            adj[i] = new LinkedList();         //initialising list
+        boolean []vis = new boolean[numCourses];   //visited array
+        boolean []stk = new boolean[numCourses];   //recursion stack array
+        
+        for(int []edge:prerequisites)
+            adj[edge[0]].add(edge[1]);         //adding edges to list
+        
+        for(int i=0;i<numCourses;i++)            //checking every possibility through a loop
+            if(!vis[i] && !dfs(vis, i, stk))     //recursive call to dfs 
+                return false;
+        return true;
+    }
+}
