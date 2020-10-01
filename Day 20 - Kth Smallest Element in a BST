@@ -36,3 +36,55 @@ class Solution {
         return ans;
     }
 }
+
+Python Version
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+def bfs(self,root,q):
+    q.append(root.val)
+    if(root.left!=None):
+        bfs(self,root.left,q)
+    if(root.right!=None):
+        bfs(self,root.right,q)    
+        
+class Solution(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        if(root==None):
+            return
+        q=[]
+        bfs(self,root,q)
+        q=sorted(q)
+        
+        return q[k-1]
+#Second method using dfs inorder traversal
+
+def dfs(self,root,q):
+    if(root.left!=None):
+        dfs(self,root.left,q)
+    q.append(root.val)    
+    if(root.right!=None):
+        dfs(self,root.right,q)    
+        
+class Solution(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        if(root==None):
+            return
+        q=[]
+        dfs(self,root,q)
+        
+        
+        return q[k-1]        
