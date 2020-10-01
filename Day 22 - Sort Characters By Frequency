@@ -48,4 +48,38 @@ class Solution {
 
 
 
-
+Python Version
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        n1=[]
+        n=dict()
+        s1=list(set(s))
+        f=[0]*len(s1)
+        for i in range(len(s1)):
+            f[i]=s.count(s1[i])
+      
+        
+        for i in range(len(s1)):
+            n[s1[i]]=f[i]
+        n=sorted(n.items(), key=lambda kv: kv[1],reverse=True)
+        for i in range(len(n)):
+            d=n[i][1]
+            while(d>0):
+                n1.append(n[i][0])
+                d-=1
+        return "".join(n1)
+# Second
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+      
+        f=Counter(s)
+        return "".join(map(lambda i :i[0]*i[1],f.most_common()))
+    
