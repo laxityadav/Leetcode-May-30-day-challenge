@@ -1,1 +1,1 @@
-# Leetcode-May-30-day-challenge
+# Leetcode-May-30-day-challenge Solutions
